@@ -40,6 +40,11 @@ def cost_per_class(annual_cost, credits):
     return cost_per_credit(annual_cost, credits) * CS1430_CREDITS / CS1430_MEETINGS_PER_SEMESTER
 
 
+def cost_per_professor(annual_cost, classes):
+    """Give back what one professor costs. classes is the number of classes this semester."""
+    return cost_per_semester(annual_cost) / classes
+
+
 # ---- PROGRAM ----
 
 def main():
@@ -47,8 +52,7 @@ def main():
     annual_cost = float(input("Enter the total cost for one year: "))
     # Then ask for the credits this semester.
     credits = int(input("Enter the number of credits for this semester: "))
-    # Asks for the number of classes this semester.
-    classes = int(input("Enter the number of classes for this semester: "))
+    
     while True:
         # Show your menu here.
         print("\nMenu:")
@@ -77,7 +81,9 @@ def main():
         elif choice == "5":
             print(f"Cost per class: ${cost_per_class(annual_cost, credits):.2f}")
         elif choice == "6":
-            print(f"Cost per professor: ${cost_per_semester(annual_cost) / classes:.2f}")
+            # Asks for the number of classes this semester.
+            classes = int(input("Enter the number of classes for this semester: "))
+            print(f"Cost per professor: ${cost_per_professor(annual_cost, classes):.2f}")
 
 
 
